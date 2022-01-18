@@ -1,0 +1,23 @@
+package com.acen.ikogc.config;
+
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+
+	@Override
+	public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
+
+		if("true".equals(httpServletRequest.getHeader("X-Ajax-call"))) { //ajax 요청 시 403에러를 응답
+			httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}else {
+			httpServletResponse.sendRedirect("/error/403");
+		}
+	}
+
+}

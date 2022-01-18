@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FileStream">
+
+	<!--리스트에서 한줄씩 맵에 저장하여 DB INSERT 처리-->
+   <!-- <insert id="setFileStream" parameterType="java.util.Map">
+        <foreach collection="list" item="item" index="index" separator=" ">
+            INSERT INTO dbo.SensorSignalDataStack
+            (
+            DataDateTime,
+            AbsoluteID,
+            PeriodStyle,
+            TOD,
+            SS1,
+            TV1,
+            OTT,
+            OTH,
+            OWD,
+            OWS,
+            ITT,
+            BTV
+            )
+            VALUES
+            (
+            #{item.DataDateTime},
+            #{item.equipName},
+            #{item.PeriodStyle},
+            #{item.TOD},
+            #{item.MOS},
+            #{item.VOC},
+            #{item.OTT},
+            #{item.OTH},
+            #{item.OWD},
+            #{item.OWS},
+            #{item.ITT},
+            #{item.BTV}
+            )
+        </foreach>
+    </insert>-->
+
+    <!--텍스트 파일 호출하여 bulk insert 진행-->
+
+    <insert id="setFileStream">
+         BULK INSERT
+             dbo.SensorSignalDataStack
+             FROM 'C:\Apache Software Foundation\Tomcat 8.5\temp\text.txt'
+         WITH
+         (
+             CODEPAGE = 'RAW',
+             FIRSTROW = 1,
+             MAXERRORS = 0,
+             FIELDTERMINATOR ='\t',
+             ROWTERMINATOR = '\n',
+             tablock
+         )
+     </insert>
+ </mapper>

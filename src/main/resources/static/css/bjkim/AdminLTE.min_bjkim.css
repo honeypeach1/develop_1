@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+
+body {
+    background: #d8efff;
+    overflow: hidden;
+}
+
+.wrapper {
+    background-image: linear-gradient(to bottom, #5c6f7e, #212d3b)
+}
+
+.content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.box.box-primary {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+}
+/*
+.box {
+    position: relative;
+    border-radius: 3px;
+    padding-top: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)
+}
+*/
